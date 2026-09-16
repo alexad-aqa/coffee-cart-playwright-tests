@@ -3,6 +3,7 @@
 ## Install
 
 npm ci
+
 npm init playwright@latest
 
 ## Run Codegen
