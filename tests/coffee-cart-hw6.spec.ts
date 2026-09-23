@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('coffee-cart-hw6', {tag: '@hw6'} , () => {
+test.describe('coffee-cart-hw6', {tag: '@hw6:css'} , () => {
     test.beforeEach(async ({ page }) => {
         await page.goto('');
     });
