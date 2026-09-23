@@ -19,7 +19,7 @@ test('Discount Promo Dismissed', async ({ page }) => {
   await page.locator('[data-test="Cappuccino"]').click();
   await page.locator('[data-test="Americano"]').click();
   await page.locator('[data-test="Espresso_Macchiato"]').click();
-  await page.locator('.buttons button').nth(1).click();
+  await page.locator('.buttons').getByRole('button', { name: "Nah, I'll skip." }).click();
   await expect(page.locator('.promo')).toBeHidden();
   await page.locator('[data-test="checkout"]').hover();
   await expect(page.locator('.cart-preview .list-item')).toHaveCount(3)
@@ -29,9 +29,9 @@ test('Discounted Item Added to Cart', async ({ page }) => {
   await page.locator('[data-test="Espresso"]').click();
   await page.locator('[data-test="Espresso_Macchiato"]').click();
   await page.locator('[data-test="Cappuccino"]').click();
-  await page.locator('.buttons button').nth(0).click();
+  await page.locator('.buttons').getByRole('button', { name: 'Yes, of course!' }).click();
   await page.locator('[data-test="checkout"]').hover();
-  await expect(page.locator('.cart-preview .list-item').nth(0)).toContainText('(Discounted) Mocha');
+  await expect(page.locator('.cart-preview .list-item').filter({ hasText: '(Discounted) Mocha' })).toBeVisible;
   await expect(page.locator('.cart-preview .list-item')).toHaveCount(4)
   await expect(page.locator('[data-test="checkout"]')).toContainText('Total: $45.00');
   await expect(page.locator('[aria-label="Cart page"]')).toContainText('(4)');  
@@ -49,7 +49,7 @@ test('Coffee Purchased Success Test', async ({ page }) => {
 test('Increase Coffee Qty by 1 via + Icon on Cart Page', async ({ page }) => {
   await page.locator('[data-test="Espresso"]').click();
   await page.locator('[aria-label="Cart page"]').click();
-  await page.locator('[aria-label="Add one Espresso"]').nth(1).click();
+  await page.locator('[aria-label="Add one Espresso"]').last().click();
   await expect(page.locator('#app')).toContainText('x 2');
   await expect(page.locator('[aria-label="Cart page"]')).toContainText('(2)');
   await expect(page.locator('#app')).toContainText('$20.00');
