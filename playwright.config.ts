@@ -36,7 +36,11 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { ...devices['Desktop Chrome'],
+        baseURL: 'https://coffee-cart.app/',
+        testIdAttribute: "data-test"
+       },
+      
     },
 
   //  {
