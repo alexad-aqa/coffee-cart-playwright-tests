@@ -46,8 +46,12 @@ test('test 19', () => {
     expect(votingAgeValidator(19)).toBe(approveMsg)
 });
 
-test('test string/nan', () => {
+test('test string', () => {
     expect(votingAgeValidator('a')).toBe(invalidAgeErrorMsg)
+});
+
+test('test   Nan', () => {
+    expect(votingAgeValidator(NaN)).toBe(invalidAgeErrorMsg)
 });
 
 test('test undefined', () => {
